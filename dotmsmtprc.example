@@ -1,0 +1,29 @@
+# Set default values for all following accounts.
+defaults
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile ~/.msmtp.log
+
+# Passwords are stored in gnome-keyring,
+
+# A mail service
+account acc1
+host mail.acc1.net
+from me@acc1.com
+tls_starttls off
+port 465
+auth on
+user me@acc1.com
+
+# Another sendmail provider
+account acc2
+from me@acc2.com
+host smtp.acc2.com
+# tls_certcheck off
+tls_min_dh_prime_bits 512
+auth on
+user me
+port 587
+
+# Set a default account
+account default : acc1

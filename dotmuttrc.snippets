@@ -1,0 +1,15 @@
+# Set up mutt to use our local maildir:
+set mbox_type=Maildir
+set folder=$HOME/Mail
+set spoolfile="+/acc1/acc1"  # This is your 'primary inbox'
+
+# I manually manage the mailbox command so that my mailboxes come up
+# in the order I want.
+mailboxes ="acc1/acc1" ="acc2/acc2" ="acc1/acc1.folder1" # ... Keep going with more. 
+
+# One very useful feature are folder hooks which change
+# options depending on the folder you are viewing:
+folder-hook acc1 'set pgp_autosign postponed="+acc1/acc1.drafts" record="+acc1/acc1.sent"
+folder-hook acc1 'set from="Egon Olsen<egon@acc1.com>" signature="~/.signature-acc1"
+folder-hook acc1 'set sendmail="msmtp-enqueue.sh -a acc1"; 
+macro index,pager a "s=acc1/acc1.archive<enter>"'
