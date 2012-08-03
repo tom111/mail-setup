@@ -19,8 +19,8 @@
 # -u choose interface to be quiet except in case of errors
 # -l log to ~/.offlineimap.log
 
-longcommand="offlineimap -o -u Noninteractive.Quiet"
-shortcommand="offlineimap -o -f INBOX,acc1,acc2 -u Noninteractive.Quiet"
+longcommand="offlineimap -o -u quiet"
+shortcommand="offlineimap -o -f INBOX,acc1,acc2 -u quiet"
 sendmailcommand="/home/tom/bin/msmtp-runqueue.sh"
 # Time in seconds between long syncs:
 longsyncdiff=1800 # 30 Minutes
