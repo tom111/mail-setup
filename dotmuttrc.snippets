@@ -13,3 +13,7 @@ folder-hook acc1 'set pgp_autosign postponed="+acc1/acc1.drafts" record="+acc1/a
 folder-hook acc1 'set from="Egon Olsen<egon@acc1.com>" signature="~/.signature-acc1"
 folder-hook acc1 'set sendmail="msmtp-enqueue.sh -a acc1"; 
 macro index,pager a "s=acc1/acc1.archive<enter>"'
+
+# mu search:
+macro index "\Cs" "<enter-command>unset wait_key<enter><shell-escape>read -p'mu query: ' x; mu find --clearlinks --linksdir ~/Mail/mu-search --format links \$x<enter><change-folder-readonly>~/Mail/mu-search\n" "mu find"
+macro index "<Esc>s" "<change-folder-readonly>~/Mail/mu-search\n" "display mu-find results"
