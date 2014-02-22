@@ -6,10 +6,11 @@ import gtk
 import gnomekeyring as gkey
 
 class Keyring(object):
-    def __init__(self, name, server, protocol):
+    def __init__(self, name, server, protocol, user=None):
         self._name = name
         self._server = server
         self._protocol = protocol
+        self._user = user
         self._keyring = gkey.get_default_keyring_sync()
 
     def has_credentials(self):
@@ -22,6 +23,8 @@ class Keyring(object):
 
     def get_credentials(self):
         attrs = {"server": self._server, "protocol": self._protocol}
+        if self._user: 
+            attrs["user"] = self._user
         items = gkey.find_items_sync(gkey.ITEM_NETWORK_PASSWORD, attrs)
         return (items[0].attributes["user"], items[0].secret)
 
@@ -39,8 +42,8 @@ def get_username(server):
     (username, password) = keyring.get_credentials()
     return username
 
-def get_password(server):
-    keyring = Keyring("offlineimap", server, "imap")
+def get_password(server, user=None):
+    keyring = Keyring("offlineimap", server, "imap", user)
     (username, password) = keyring.get_credentials()
     return password
 
