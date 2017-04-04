@@ -1,0 +1,47 @@
+/* stylesheet.css for tomka's devspace */
+
+body {
+    margin-left: 15%; 
+    margin-right: 15%;
+    color: black; 
+    background: white;
+    font-family: serif;
+    font: times;
+}
+
+h1 {
+font: bold;
+font-family: helvetica impact sans-serif;
+margin: 20px 0 20px;
+padding: 2pt;
+border-top: solid #1A75C0 medium;
+border-bottom: solid #1A75C0 medium;
+}
+
+h2 {
+font: bold;
+font-family: helvetica impact sans-serif;
+margin: 0 0 15px;
+padding: 2pt;
+border-bottom: dotted #1A75C0 thin;
+}
+
+h3 {
+font: bold;
+font-family: helvetica impact sans-serif;
+margin: 0 0 10px;
+}
+
+p {
+font-family: serif;
+}
+
+#postamble {
+	margin-top: 50px;
+	border-top: 1px solid #DDD;
+}
+
+#postamble p {
+	font-size: 0.75em;
+	margin: 0px;
+}

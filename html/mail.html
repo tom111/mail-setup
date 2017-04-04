@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>A unix style mail setup</title>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="description" content="Thomas Kahle's Gentoo development page"
+ />
+<meta  name="keywords" content="gentoo sci-mathematics" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">A unix style mail setup</h1>
+<script type="text/javascript">
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '//api.flattr.com/js/0.6/load.js?mode=auto';
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */
+</script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.thomas-kahle.de/" :
+"http://stats.thomas-kahle.de/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 5);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://stats.thomas-kahle.de/piwik.php?idsite=5" style="border:0"
+alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
+
+<center>
+<a class="FlattrButton" style="display:none;" rev="flattr;button:compact;"
+href="//dev.gentoo.org/~tomka/mail.html"></a>
+</center>
+
+<p>
+Bitcoin donations accepted: 17BdguYxvaL2gsmogFgUkzjqnGCFGTBYWi 
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Introduction and Rationale</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Why IMAP</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+These days you should not use anything else.  I want to have access to email from different devices,
+mostly my phone and my laptop and statuses of mails should always be in sync.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">What's New</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">Jan 2013: Improved mu search command, thanks Frederik Fischbach</h4>
+</div>
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">July 2012: Overhaul of the entire guide in progress</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li>use mu also for the addressbook
+</li>
+<li><a href="https://github.com/tom111/mail-setup">files are now on github</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3">Feb 2011: The mail search engine is now <a href="http://www.djcbsoftware.nl/code/mu/">mu</a> instead of mairix.</h4>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Some requirements for my setup:</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li><b>Allows me to write mails with emacs (or whatever text editor I like best)</b>: In my setup I use the
+mutt mail client which naturally allows you to use the editor of your choice, in my case an
+emacsclient.
+</li>
+<li><b>Works offline and online</b>: In this setup there is a clear separation between two things: 
+<ul class="org-ul">
+<li>the handling of your mail locally (Writing, reading, moving, archiving, &#x2026;).  This is all done
+in your local maildir and completely independent of any internet connection.
+</li>
+<li>Transfer of mail to and from the server.  This is done by a cron job in the background and
+independent of the local handling of mail. If you finished composing a new mail it will be
+queued and automatically sent the next time you are online.
+</li>
+</ul>
+</li>
+<li><b>Seamless integration of multiple identities</b> In this setup I use mutt's folder-hooks to change
+many aspects like outgoing mailserver, signature, identity.
+</li>
+<li><b>PGP support</b>: Just choose a mail client that supports it.
+</li>
+<li><b>IMAP on multiple servers</b>: I use offlineimap that syncs quickly in parallel from many
+different sources.
+</li>
+<li><b>Fast</b>: Everybody wants speed.  I don't want to wait for an internet
+connection when I hit the "Send" button (which, in fact, is not a button&#x2026;)
+<ul class="org-ul">
+<li>Using the mutt mail client is fast a priori, e.g. because you never touch the mouse.
+</li>
+<li>Fetching mail is much faster with offlineimap.  The full sync of all folders on all my IMAP
+accounts takes around 10 seconds, but the additional flexibility in this setup allows for easy
+customization: I do the full sync only every 30 minutes and usually only update Inboxes every 3
+minutes.  This quick sync takes less than 2 seconds.
+</li>
+<li>Using a local maildir for the mail handling is much faster than doing IMAP queries constantly
+when you switch folders (especially on an SSD).
+</li>
+<li>Sending mail through a relay script, even if you are always online, is much faster: If you send
+a 3MB mail it will just be saved on hard disk and you can immediately continue working.  Within
+the next minutes it is automatically sent in the background.
+</li>
+<li>Using mu for mail search on a local maildir is a gazillion times
+faster both for indexing and for searching.
+</li>
+</ul>
+</li>
+<li><b>Has on-the-fly address book</b>: Mutt has support for external address sources so we can use a
+specialized tool that does this job well, in this case it will also
+be realized using mu.
+</li>
+<li><b>Highly customizable</b>: Things you see here can be adapted to your needs easily.
+</li>
+</ul>
+
+<p>
+For ages I have been using Mozilla Thunderbird for my mail but over
+the time it became slower and slower and I was quite frustrated about
+some things.  For instance I would want to customize keyboard
+shortcuts.  I also want to write my email with emacs, but maybe not go
+the entire way of using a lisp based mail client.  These days mu in
+fact comes with a small mail client inspired by notmuch.
+</p>
+
+<p>
+The two parts of mail, getting your mail and sending mail are
+delegated to separate programs here.  In more integrated environments
+you don't see any difference between these two, but having them in
+split programs gives you much more flexibility.
+</p>
+
+<p>
+For the examples we will assume that there are two IMAP accounts
+"acc1" and "acc2" and each of them is synced into a separate
+sub-folder of a local Maildir "~/Mail". The local directory layout is
+as follows with "folderX" representing mail folders on the IMAP
+server.  The special mu folder will become clear <i>below</i>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">~/Mail
+  -&gt; acc1
+    -&gt; acc1 
+    -&gt; acc1.folder1
+    -&gt; acc1.folder2
+    ...
+  -&gt; acc2
+    -&gt; acc2 
+    -&gt; acc2.folder1
+    -&gt; acc2.folder2
+  -&gt; mu-search
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Disclaimer</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Please double check everything you find here before applying it to
+your mail.  Keep backups! Read the scripts before running them!
+Especially the bi-directional sync can lead to surprises.  If you
+delete a lot of mail locally, for instance because you synced it to
+your local machine twice, running offlineimap on this local
+repository will delete the mail remotely.  I take no responsibility
+for any harm to your pets or email.  All scripts without other
+notice are copyrighted by myself and distributed under the GPLv2 or
+later at your choice.  This guide is published under a Creative
+Commons <a href="https://creativecommons.org/licenses/by-sa/3.0/">Attribution-ShareAlike 3.0 Unported License</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">The tools</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+These are the tools that will be used in no particular order.  They
+have been selected for implenting the unix philosophy of having one
+tool for one job.  All of them are available in Gentoo.
+</p>
+
+<ul class="org-ul">
+<li><a href="http://offlineimap.org">offlineimap</a> 
+   Clone IMAP accounts to your local machine and back.
+</li>
+<li><a href="http://msmtp.sourceforge.net/">msmtp</a> 
+   Send mail easily via a mail-relay.
+</li>
+<li><a href="http://de.wikipedia.org/wiki/Vixie_cron">vixie-cron</a>
+   Run jobs at a specified time of the day
+</li>
+<li><a href="http://www.mutt.org/">mutt</a>
+   The mail client that sucks less
+</li>
+<li><a href="http://www.gnu.org/software/emacs/">emacs</a>
+   The versatile real time display editor
+</li>
+<li><a href="http://www.python.org/">python</a>
+   The glue.
+</li>
+<li><a href="http://live.gnome.org/GnomeKeyring">gnome-keyring</a>
+   In lack for a proper 'generic' tool.
+</li>
+<li><a href="http://www.djcbsoftware.nl/code/mu/">mu</a>
+   Finding email quickly
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Implementation</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The first task to solve is the safe storage of passwords.  They
+should not be saved in plaintext on the harddisk.  The tools that we
+use here all support plain text passwords in their configuration
+files, but this is not an option that you should consider at all. We
+use gnome-keyring to save passwords somewhat more securely.  For KDE
+users, at some point kwallet may be supported, but I don't know how
+to do that at the moment. Maybe at some point there will be a
+<a href="http://lwn.net/Articles/344117/">unified password safe</a>?
+</p>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Gnome Keyring</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+To save login information in gnome-keyring we will use two scripts.
+This has to be done only once. The first one will store your smtp
+passwords and comes with the vanilla distro of msmtp and <a href="http://bugs.gentoo.org/show_bug.cgi?id=341113">also with
+Gentoo's msmtp package</a> (it is at /usr/share/msmtp/msmtp-gnome-tool).
+Usage is simple: for every smtp server you want to use to send mail do
+the following:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">./msmtp-gnome-tool.py -s --server "mail.acc1.com" --username "acc1user"
+</pre>
+</div>
+
+<p>
+If everything works out your password will be asked for and stored in
+the keyring.  This will allow us to use msmtp passwordless later.  For
+fetching mail we will use a different script that you can fetch <a href="http://www.clasohm.com/blog/20080922/imap-passwords">here</a>
+or <a href="https://github.com/tom111/mail-setup">from github</a>.  I have learned this trick from <a href="http://www.clasohm.com/blog/one-entry?entry_id=90957">here</a>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">./gnome-keyring-add-imap-password.py
+</pre>
+</div>
+<p>
+Run it for every imap server you want to connect to and enter your
+login credentials for these servers.  (One could argue that we
+implemented are modern variant of a netrc file.)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Collecting Email with offlineimap</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+offlineimap is a python program for bidirectional sync between a local
+maildir and imap servers.  Its documentation is not always up to date,
+but it has a very friendly mailing list to which you can subscribe
+<a href="http://lists.alioth.debian.org/mailman/listinfo/offlineimap-project">here</a>.  In any case you should read 'man offlineimap' (which, in fact,
+contains bits from this guide).
+</p>
+
+<p>
+Let's look at a sample configuration file with two accounts that are
+synced.  The example file will output information using the 'ttyui'
+user interface that is suited for calling it from the command
+line. Later we will run it from a cron job and choose the 'silent' UI.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">[general]
+accounts = acc1, acc2
+maxsyncaccounts = 5
+ui = ttyui
+pythonfile=~/bin/offlineimap-helpers.py
+# Die after 120 seconds of nothing. Probably the connection died ...
+socktimeout = 120
+
+[Account acc1]
+localrepository = acc1local
+remoterepository = acc1remote
+autorefresh = 2
+quick=0
+
+[Account acc2]
+localrepository = acc2local
+remoterepository = acc2remote
+autorefresh = 4
+quick=2
+
+[Repository acc1local]
+type = Maildir
+localfolders = ~/Mail/acc1
+nametrans = localtransfolder_acc1
+
+[Repository acc2local]
+type = Maildir
+localfolders = ~/Mail/acc2
+nametrans = localtransfolder_acc2
+
+[Repository acc1remote]
+type = IMAP
+remotehost = imap.acc1.com
+remoteusereval = get_username("imap.acc1.net")
+remotepasseval = get_password("imap.acc1.net")
+nametrans = oimaptransfolder_acc1
+ssl = yes
+# insert your server certificate's fingerprint here if needed
+# cert_fingerprint=1c671ac670b1fbbfddeddd3541dbcc06148061e2
+# But also see this thread: 
+# http://comments.gmane.org/gmane.mail.imap.offlineimap.general/2312
+
+# Folders to get:
+folderfilter = lambda foldername: foldername in [
+	     'INBOX', 'Drafts', 'Sent', 'archiv']
+
+[Repository acc2remote]
+type = IMAP
+remotehost = imap.acc2.net
+remoteusereval = get_username("imap.acc2.net")
+remotepasseval = get_password("imap.acc2.net")
+nametrans = oimaptransfolder_acc2
+ssl = yes
+port = 993
+</pre>
+</div>
+<p>
+One of the coolest things about offlineimap is that you can use
+arbitrary python code to fill the variables. The file containing the
+python code is specified with the line
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">pythonfile=~/bin/offlineimap-helpers.py
+</pre>
+</div>
+<p>
+In this simple example we have code for fetching passwords from the
+gnome-keyring and translating folder names on the server and local
+back and forth.  For instance, get_username and get_password are part
+of the interaction with gnome-keyring and not printed here.  You find
+them in the example file that is <a href="https://github.com/tom111/mail-setup">on github</a> or <a href="http://www.clasohm.com/blog/20080922/offlineimap.py">here</a>. 
+</p>
+
+<p>
+One can also specify python code directly in the configuration file.
+For instance, folderfilter is a lambda term that, well, filters which
+folders to get.  The functions to translate folders use a very simple
+logic. The INBOX folder should have the same name as the account while
+any other folder will have the account name and a dot as a prefix.
+Then offlineimap handles the renaming correctly in both directions:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">import re
+
+def oimaptransfolder_acc1(foldername):
+    if(foldername == "INBOX"):
+	retval = "acc1"
+    else:
+	retval = "acc1." + foldername
+    retval = re.sub("/", ".", retval)
+    return retval
+
+def localtransfolder_acc1(foldername):
+    if(foldername == "acc1"):
+	retval = "INBOX"
+    else:
+	# remove leading '.acc1'
+	retval = re.sub("acc1\.", "", foldername)
+    retval = re.sub("\.", "/", retval)
+    return retval
+</pre>
+</div>
+
+<p>
+One must make sure that these two functions are exact inverses of each
+other.  See these threads for more information.
+</p>
+
+<p>
+After preparing the configuration you should backup your email (<b>do it
+now, don't skip it!</b>) and try running offlineimap from the command
+line.  If everything works, you should see informative output and find
+your local maildir populated with the appropriate subdirectories.  By
+default offlineimap keeps running and resyncs the accounts after a
+waiting time that you can configure in .offlineimaprc.  You can kill
+it with C-c.  In this guide we will restart offlineimap for every
+single run and manage the timing via cron.  This will allow us to run
+it with different parameters on different schedules (quick sync!) and
+also avoid issues with hung instances after network issues.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">Setting up your mail client</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+At this point you should set up your mail client to read a local
+maildir.  I use mutt, but there are other good ones like gnus, or even
+Mozilla Thunderbird. Yes, right! You could do all this voodoo here and
+then still use Thunderbird to work on the local maildir and see how
+fast it actually can be if it is not keeping several IMAP connections
+alive.
+</p>
+
+<p>
+Here is some rudimentary mutt configuration:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash"># Set up mutt to use our local maildir:
+set mbox_type=Maildir
+set folder=$HOME/Mail
+set spoolfile="+/acc1/acc1"  # This is your 'primary inbox'
+
+# I manually manage the mailbox command so that my mailboxes come up
+# in the order I want.
+mailboxes ="acc1/acc1" ="acc2/acc2" ="acc1/acc1.folder1" # ... Keep going with more. 
+
+# One very useful feature are folder hooks which change
+# options depending on the folder you are viewing:
+
+# for instance you could do
+folder-hook acc1 'set pgp_autosign postponed="+acc1/acc1.drafts" record="+acc1/acc1.sent"
+folder-hook acc1 'set from="Egon Olsen&lt;egon@acc1.com&gt;" signature="~/.signature-acc1"
+folder-hook acc1 'set sendmail="msmtp-enqueue.sh -a acc1"; 
+macro index,pager a "s=acc1/acc1.archive&lt;enter&gt;"'
+</pre>
+</div>
+<p>
+You get the point. Read the manual for more information about mutt configuration. Two points deserve
+mention: 
+</p>
+<ol class="org-ol">
+<li>We set sendmail to a script msmtp-enqueue.sh which accepts an
+account option -a and still has to be set up. See below
+</li>
+<li>I'm really hooked to keeping all my mail forever so I introduced
+the 'a' key for archiving mail in the appropriate folder.  This
+macro implements this: When pressing a on the index or in the pager
+the mail is moved to the respective archive folder.
+</li>
+</ol>
+
+<p>
+You should now be able to read the synced email.  You can also try to
+delete some email or move it around and sync your changes back to the
+server by running offlineimap again (if it is not still running).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4">Sending email with msmtp</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+msmtp is a software the gets mail from your computer to an smtp server
+that will send it.  msmtp is configured through the file ~/.msmtprc
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"># Set default values for all following accounts.
+defaults
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile ~/.msmtp.log
+
+# Passwords are stored in gnome-keyring,
+
+# A mail service
+account acc1
+host mail.acc1.net
+from me@acc1.com
+tls_starttls off
+port 465
+auth on
+user me@acc1.com
+
+# Another sendmail provider
+account acc2
+from me@acc2.com
+host smtp.acc2.com
+# tls_certcheck off
+tls_min_dh_prime_bits 512
+auth on
+user me
+port 587
+
+# Set a default account
+account default : acc1
+</pre>
+</div>
+<p>
+See the manual and various web pages for more examples of configuring
+msmtp.  One of my mail servers sends too short primes for recent tls
+libraries.  It took me quite a while to figure out what is going on so
+I left the respective option in here, just in case you run into this
+trouble.  Basically you can pass on tls options through msmtp's
+configuration (like min_dh_prime_bits in this case).  When everything
+is set up you should be able to send mail with the well named program
+'mail': Try it with
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">echo "... ok, well... it is. Sorry for the noise" | mail -s "This is not a drill!!!" your@mail.com
+</pre>
+</div>
+<p>
+Now, as a homework, think about a cool script that sends email!
+</p>
+
+<p>
+When you run the above bit you will notice a short but annoying delay
+while the mail is sent over the network.  Remedy comes through a
+mail-relay scripts which will cache the calls to mail on you hard
+drive.  To install it, copy msmtp-runqueue.sh, msmtp-enqueue.sh,
+msmtp-listqueue.sh to ~/bin and modify them in case you want your
+queue to be saved in a location different from ~/.msmtpqueue.  The
+scripts should come with your distribtuion. On Gentoo they are located
+in <i>usr/share/msmtp/msmtpqueue</i>.  Now queing email to be sent from
+acc1 is as as simple as running "msmtp-enqueue.sh -a acc1" instead of
+'mail'.  Configure your mail program to use 'msmtp-enqueue.sh -a
+accountname' as the way to send email.  You can view your current
+queue with msmtp-listqueue.sh and actually send the mail with
+msmtp-runqueue.sh.  We will take care of automatization in the next
+step.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5">The mail-update script</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+I wrote the following script to implement all the mail transfer if an
+internet connection is present.  The script runs a 'quick sync' of the
+INBOXes (every 3 minutes, say) and a more heavy sync for everything
+(archive folders with several GB) only every 30 minutes.  It will also
+check if another instance of offlineimap is running and if an internet
+connections exists. In this case it will check the file
+~/.offlineimap_lastlongsynctime for the last (unix-) time of a full
+sync.  If this is shorter than ${longsyncdiff} ago then do a quick
+sync, otherwise do a long one.  Additionally it will send mail that
+has been saved using msmtp-queing every time it finds an internet
+connection.  <b>Read the script and understand what it is doing before
+you run it!</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">#!/bin/bash
+
+## WARNING: No guarantees. This might eat your mail in the case that
+## it wrongly detects that offlineimap is not running and runs it
+## again. (although offlineimap will also try to catch that case)
+
+# -o run only once
+# -f specify folders
+# -u choose interface to be quit except in case of errors
+# -l log to ~/.offlineimap.log
+
+longcommand="offlineimap -o -u Noninteractive.Quiet"
+shortcommand="offlineimap -o -f INBOX,IML -u Noninteractive.Quiet"
+sendmailcommand="/home/tom/bin/msmtp-runqueue.sh"
+# Time in seconds between long syncs:
+longsyncdiff=1800 # 30 Minutes
+
+# Check connection status
+if ! ping -c1 www.google.com &gt; /dev/null 2&gt;&amp;1; then 
+    # Ping could be firewalled ...
+    # '-O -' will redirect the actual html to stdout and thus to /dev/null
+    if ! wget -O - www.google.com &gt; /dev/null 2&gt;&amp;1; then
+	# Both tests failed. We are probably offline 
+	# (or google is offline, i.e. the end has come)
+	exit 1;
+    fi
+fi
+
+# We are online: So let's get mail going first
+(${sendmailcommand} &amp;&gt; ~/.msmtp-queue.log) &amp;
+
+# Check if offlineimap is running:
+pid=$(pgrep -f "/usr/bin/offlineimap")
+if [[ ${pid} -gt 0 ]] ; then
+    echo "Offlineimap is running with pid ${pid}"
+    exit 1
+fi
+
+# Now we determine what to do based on the last time we did things:
+
+curtime=$(date +%s)
+if [ -e ~/.offlineimap_lastlongsynctime ] ; then 
+    # Last sync file exists
+    lastlongsync=$(&lt;~/.offlineimap_lastlongsynctime) &gt;/dev/null # The unix time of the last long sync
+    timediff=$(( curtime - lastlongsync ))
+    if [ ${timediff} -gt ${longsyncdiff} ]; then
+	echo ${curtime} &gt; ~/.offlineimap_lastlongsynctime
+	exec ${longcommand}
+    else
+	exec ${shortcommand}
+    fi
+else
+    # Do the long sync
+    echo ${curtime} &gt; ~/.offlineimap_lastlongsynctime
+    exec ${longcommand}
+fi
+</pre>
+</div>
+
+<p>
+To run this script every 3 minutes we use cron.  One minor obstacle is
+that a job run from cron will not inherit certain variables from the
+environment that your shell lives in.  Therefore from the program run
+by cron, your gnome-keyring may be unreachable.  You can read about
+the gory details <a href="http://burtonini.com/blog/computers/offlineimap-2008-11-04-20-00">here</a>.  Upshot: You should export the session id of
+your dbus session to somewhere in your home directory on login. To do
+so we create a script export_x_info.sh
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">#!/bin/bash
+# Export the dbus session address on startup so it can be used by cron
+touch $HOME/.Xdbus
+chmod 600 $HOME/.Xdbus
+env | grep DBUS_SESSION_BUS_ADDRESS &gt; $HOME/.Xdbus
+echo 'export DBUS_SESSION_BUS_ADDRESS' &gt;&gt; $HOME/.Xdbus
+</pre>
+</div>
+<p>
+This script should be executed once after (graphical) login. 
+</p>
+
+<p>
+Finally we use 'crontab -e' to edit the cron table and add the
+offlineimapdaemon script that transfers all mails.  I've set it to run
+every three minutes:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">*/3 * * * * source ~/.Xdbus; /home/tom/bin/offlineimapdaemon.sh
+</pre>
+</div>
+
+<p>
+With this the basic setup is finished.  We can now send mail and our
+local maildir is synced on a regular basis.  Up next: mail search and
+address book.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6">Searching mail with mu</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+mu (maildir utils) is a mail search engine based on <a href="http://xapian.org/">xapian</a>.  It has
+many features and a very helpful upstream.  After installing it we
+need to build the index:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">mu index --maildir "~/Mail"
+</pre>
+</div>
+<p>
+This will take while when run first but subsequent runs are much
+faster.  The result is a xapian database, saved in the ~/.mu directory
+(but this is of course configurable if you like).
+</p>
+
+<p>
+To perform a basic search, run 'mu find ${searchstring}':
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">$ mu find penguin
+Mon 04 Jun 2007 09:11:26 PM CEST rc5-request@lists.distributed.net rc5 Digest, Vol 39, Issue 3
+Wed 06 Jun 2007 02:34:56 PM CEST rc5-request@lists.distributed.net rc5 Digest, Vol 39, Issue 4
+Tue 28 Aug 2007 09:46:40 PM CEST rc5-request@lists.distributed.net rc5 Digest, Vol 41, Issue 5
+Sun 02 Sep 2007 02:32:47 AM CEST rc5-request@lists.distributed.net rc5 Digest, Vol 42, Issue 1
+Wed 11 Jun 2008 11:13:15 AM CEST rc5-request@lists.distributed.net rc5 Digest, Vol 48, Issue 2
+</pre>
+</div>
+<p>
+The output is a list of mails containing the searched string.  Note
+that this will not find 'penguins', as the search is word-based.
+(Substring search is expansive!)  The query language is the xapian
+query language.
+</p>
+
+<p>
+A useful feature of mu is that it can create a Maildir containing
+symlinks to the search results.  We will use this feature to connect
+mu to mutt.  (Remember the folder 'mu-search' that showed up in the
+Maildir above?).  Here is a snippet of the mutt configuration that
+shows details.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">mailboxes [... all the other mailboxes ...] "=mu-search"
+
+# mu search:
+macro index "\Cs" "&lt;enter-command&gt;unset wait_key&lt;enter&gt;&lt;shell-escape&gt;read -p'mu query: ' x; \
+      mu find --clearlinks --linksdir ~/Mail/mu-search --format links \$x&lt;enter&gt;\
+      &lt;change-folder-readonly&gt;~/Mail/mu-search\n" "mu find"
+macro index "&lt;Esc&gt;s" "&lt;change-folder-readonly&gt;~/Mail/mu-search\n" "display mu-find results"
+</pre>
+</div>
+<p>
+The last two lines define macros.  As C-s is hard-wired to 'search' in
+my brain, I also want to use it in mutt.  It will present a command
+line asking for the search query and switch to the results folder
+automatically.  The options to mu find are "&#x2013;clearlinks" for clearing
+left over links from the last search and the obvious "&#x2013;linksdir" and
+"&#x2013;format".  The second macro binds Esc-s to jump to the results
+folder.  Note that you cannot operate on the mail but only browse it.
+Therefore the folder will be opened readonly.
+</p>
+
+<p>
+The final step is to edit your crontab to rebuild the index regularly,
+e.g. on every 13th minute of the hour.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">*/3 * * * * source ~/.Xdbus; ~/bin/offlineimapdaemon.sh
+13 */1 * * * mu index --maildir ~/Mail
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-7" class="outline-3">
+<h3 id="sec-4-7">Address book.</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+To build an addressbook we will also use mu which also finds
+contacts using cfind:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">$ mu cfind Linus
+Linus Torvalds torvalds@linux-foundation.org
+</pre>
+</div>
+
+<p>
+When search is cheap it is best to have a database that is filled with
+lots of addresses.  My heuristics is to include every address that I
+ever sent mail to.  So the trick will be to have a second database
+that is an index of only the sent mail folders.  It will be saved in
+"~/.mu-sent-index".
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">#!/bin/sh
+
+# Set up an array with outboxes
+sentboxes=( "~/Mail/acc1/acc1.sent/ ~/Mail/acc2/acc2.Sent" )
+
+# Run mu on each of them
+for dir in "${sentboxes[@]}"
+do
+    mu index --nocleanup --maildir="${dir}" --muhome=~/.mu-sent-index
+done
+</pre>
+</div>
+
+<p>
+Now we setup the mail client to use mu for address lookup.  Here is
+how to do it in mutt:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash"># Adress lookup with lbdb
+set query_command="mu cfind --muhome=~/.mu-sent-index --format=mutt-ab '%s'"
+</pre>
+</div>
+<p>
+Now you can just complete addresses and names by pressing C-t wherever
+mutt asks you for an email address.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-8" class="outline-3">
+<h3 id="sec-4-8">Cron</h3>
+<div class="outline-text-3" id="text-4-8">
+<p>
+My user's crontab finally looks as follows.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">*/3 * * * * source ~/.Xdbus; ~/bin/offlineimapdaemon.sh
+13 */1 * * * mu index --maildir ~/Mail
+15 11 * * * ~/bin/refreshaddress.sh
+</pre>
+</div>
+
+<p>
+Consequently, every three minutes the mail update script is run, at
+every 13th minute of the hour the mail index will be rebuilt, and
+daily at 11:15 mu updates its address database.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Questions ?</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+I offer support for this guide via email: tomka@g.o and will post questions and answers on this page.
+</p>
+
+<a rel="license"
+href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img
+alt="Creative Commons License" style="border-width:0"
+src="//i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a><br
+/>This <span xmlns:dct="//purl.org/dc/terms/"
+href="//purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is
+licensed under a <a rel="license"
+href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative
+Commons Attribution-ShareAlike 3.0 Unported License</a>.
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2015-04-01 Wed&gt;</span></span></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
